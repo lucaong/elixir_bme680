@@ -14,7 +14,7 @@ endif
 
 CC ?= $(CROSSCOMPILE)-gcc
 
-CFLAGS = -g
+CFLAGS ?= -O2 -Wall -Wextra -Wno-unused-parameter
 
 HEADER_FILES = src
 
@@ -26,8 +26,11 @@ DEFAULT_TARGETS ?= priv priv/bme680
 
 all: $(DEFAULT_TARGETS)
 
-priv/bme680: src/main.o $(OBJ)
-	$(CC) $^ -I $(HEADER_FILES) -o $@ $(LDFLAGS) $(OBJ) $(LDLIBS)
+priv/bme680: $(OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS) $(OBJ) $(LDLIBS)
+
+%.o: %.c
+	$(CC) -c $(ERL_CFLAGS) $(CFLAGS) -o $@ $<
 
 priv:
 	mkdir -p priv
