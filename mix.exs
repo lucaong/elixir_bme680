@@ -4,7 +4,7 @@ defmodule ElixirBme680.MixProject do
   def project do
     [
       app: :elixir_bme680,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.7",
       compilers: [:elixir_make] ++ Mix.compilers,
       aliases: aliases(),
