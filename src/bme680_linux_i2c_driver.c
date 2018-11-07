@@ -35,7 +35,8 @@ int8_t user_i2c_init(uint8_t device_nr, uint8_t i2c_addr)
     }
   }
 
-  int status = ioctl(i2c_fd, I2C_SLAVE_FORCE, i2c_addr)
+  int status = ioctl(i2c_fd, I2C_SLAVE_FORCE, i2c_addr);
+
   if (status < 0) {
     err(EXIT_FAILURE, "set i2c slave address: %d", status);
     return (uint8_t) -1;
