@@ -1,7 +1,7 @@
 defmodule Bme680 do
   @moduledoc """
   `elixir_bme680` provides a high level abstraction to interface with the
-  BME680 sensor on Linux platforms.
+  BME680 environmental sensor on Linux platforms.
   """
   use Bitwise
   use GenServer
