@@ -6,6 +6,7 @@
 #include <err.h>
 #include <errno.h>
 #include <time.h>
+#include <stdio.h>
 #include "linux/i2c-dev.h"
 
 #define USER_I2C_BUFFER_LENGTH 128
@@ -23,20 +24,20 @@ void user_delay_ms(uint32_t period)
 int8_t user_i2c_init(uint8_t device_nr, uint8_t i2c_addr)
 {
   char i2c_device_name[20];
-  snprintf(i2c_device_name, 19, "/dev/i2c-%d", device_nr)
+  snprintf(i2c_device_name, 19, "/dev/i2c-%d", device_nr);
 
   if (!i2c_fd) {
     i2c_fd = open(i2c_device_name, O_RDWR);
 
     if (i2c_fd < 0) {
-      err(EXIT_FAILURE, "%s: %d", "open i2c device", i2c_fd);
+      err(EXIT_FAILURE, "open i2c device: %d", i2c_fd);
       return (uint8_t) -1;
     }
   }
 
   int status = ioctl(i2c_fd, I2C_SLAVE_FORCE, i2c_addr)
   if (status < 0) {
-    err(EXIT_FAILURE, "%s: %d", "set slave address", status);
+    err(EXIT_FAILURE, "set i2c slave address: %d", status);
     return (uint8_t) -1;
   }
 
@@ -72,13 +73,13 @@ int8_t user_i2c_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data, uint16
 
     n = write(i2c_fd, rbuf, 1);
     if (n != 1) {
-      err(EXIT_FAILURE, "%s: %d", "i2c write", status);
+      err(EXIT_FAILURE, "i2c write: %d", n);
       return (uint8_t) -1;
     }
 
-    n = read(file, reg_data, len);
+    n = read(i2c_fd, reg_data, len);
     if (n != len) {
-      err(EXIT_FAILURE, "%s: %d", "i2c read", status);
+      err(EXIT_FAILURE, "i2c read: %d", n);
       return (uint8_t) -1;
     }
 
@@ -106,15 +107,17 @@ int8_t user_i2c_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data, uint1
      */
 
     uint8_t buf[USER_I2C_BUFFER_LENGTH];
+    int i;
 
     buf[0] = reg_addr;
-    for (int i = 0; i < len; i++) {
+
+    for (i = 0; i < len; i++) {
       buf[i + 1] = reg_data[i];
     }
 
     int n = write(i2c_fd, buf, len + 1);
     if (n != len + 1) {
-      err(EXIT_FAILURE, "%s: %d", "i2c write", status);
+      err(EXIT_FAILURE, "i2c write: %d", n);
       return (uint8_t) -1;
     }
 
