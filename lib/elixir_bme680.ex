@@ -112,7 +112,7 @@ defmodule Bme680 do
   # Private helper functions
 
   defp decode_measurement(line) do
-    case String.split(line, ",", [trim: true]) do
+    case line |> String.trim |> String.split(",", [trim: true]) do
       ["T:" <> t, "P:" <> p, "H:" <> h, "G:" <> g] ->
         %Measurement{
           temperature: String.to_float(t),

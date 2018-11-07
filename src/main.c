@@ -46,7 +46,8 @@ void output_measurement(struct bme680_dev gas_sensor, uint16_t meas_period) {
         data.pressure / 100.0f, data.humidity / 1000.0f);
   }
 
-  puts(output);
+  fprintf(stdout, "%s\n", output);
+  fflush(stdout);
 }
 
 int main(int argc, char* argv[])

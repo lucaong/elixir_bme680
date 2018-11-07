@@ -6,7 +6,7 @@
 while read line
 do
   if [ "$line" = 'measure' ]; then
-    echo "T:021.54,P:1234.21,H:045.72,G:010321"
+    printf "T:021.54,P:1234.21,H:045.72,G:010321\n"
   else
     >&2 echo "bme680 test executable: invalid command"
     exit -1
