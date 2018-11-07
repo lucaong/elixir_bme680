@@ -140,10 +140,10 @@ int main(int argc, char* argv[])
         return 1;
       }
 
-      if (strcmp("measure", buffer) == 0) {
+      if (strcmp("measure\n", buffer) == 0) {
         output_measurement(gas_sensor, meas_period);
       } else {
-        err(EXIT_FAILURE, "Invalid command %d", buffer[0]);
+        err(EXIT_FAILURE, "Invalid command %s", buffer);
       }
     }
   }
