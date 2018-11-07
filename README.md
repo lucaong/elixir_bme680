@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/lucaong/elixir_bme680.svg?branch=master)](https://travis-ci.org/lucaong/elixir_bme680)
 
-An Elixir library to interface with the BME680 gas sensor.
+An Elixir library to interface with the BME680 environmental sensor.
 
 ## Installation
 
