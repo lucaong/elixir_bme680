@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# This is a test executable that simulates, for testing purposes, the byte
+# protocol sent by the bme680 C to Elixir binding provided by this project.
+
+while read line
+do
+  if [ "$line" = 'measure' ]; then
+    echo "T:021.54,P:1234.21,H:045.72,G:010321"
+  else
+    >&2 echo "bme680 test executable: invalid command"
+    exit -1
+  fi
+done
