@@ -12,7 +12,7 @@ by adding `elixir_bme680` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:elixir_bme680, "~> 0.1.0"}
+    {:elixir_bme680, "~> 0.1.1"}
   ]
 end
 ```
