@@ -22,11 +22,19 @@ int poll_input() {
 
 void output_measurement(struct bme680_dev gas_sensor, uint16_t meas_period) {
   struct bme680_field_data data;
-  int8_t rslt = BME680_OK;
+  int8_t rslt;
 
   rslt = bme680_set_sensor_mode(&gas_sensor); /* Trigger the next measurement */
+  if (rslt != BME680_OK) {
+      err(EXIT_FAILURE, "Bme680 set sensor mode: %d", rslt);
+  }
+
   user_delay_ms(meas_period); /* Delay till the measurement is ready */
+
   rslt = bme680_get_sensor_data(&data, &gas_sensor);
+  if (rslt != BME680_OK) {
+      err(EXIT_FAILURE, "Bme680 get sensor data: %d", rslt);
+  }
 
   char output[40];
 
