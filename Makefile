@@ -27,10 +27,10 @@ DEFAULT_TARGETS ?= priv priv/bme680
 all: $(DEFAULT_TARGETS)
 
 priv/bme680: $(OBJ)
-	$(CC) $^ -o $@ $(LDFLAGS) $(OBJ) $(LDLIBS)
+	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 %.o: %.c
-	$(CC) -c $(ERL_CFLAGS) $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 priv:
 	mkdir -p priv
