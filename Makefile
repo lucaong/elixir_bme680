@@ -27,7 +27,7 @@ DEFAULT_TARGETS ?= priv priv/bme680
 all: $(DEFAULT_TARGETS)
 
 priv/bme680: priv $(OBJ)
-	$(CC) -I $(HEADER_FILES) -o $@ $(LDFLAGS) $(OBJ) $(LDLIBS)
+	$(CC) src/main.c -I $(HEADER_FILES) -o $@ $(LDFLAGS) $(OBJ) $(LDLIBS)
 
 priv:
 	mkdir -p priv
