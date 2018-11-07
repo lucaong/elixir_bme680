@@ -36,4 +36,5 @@ priv:
 	mkdir -p priv
 
 clean:
-	rm -f priv $(OBJ)
+	rm -rf priv
+	rm -f $(OBJ)

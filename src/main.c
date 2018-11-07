@@ -80,8 +80,12 @@ int main(int argc, char* argv[])
   gas_sensor.amb_temp = 25;
 
 
-  int8_t rslt = BME680_OK;
+  int8_t rslt;
   rslt = bme680_init(&gas_sensor);
+  if (rslt != BME680_OK) {
+      err(EXIT_FAILURE, "Bme680 init: %d", rslt);
+      return -1;
+  }
 
   uint8_t set_required_settings;
 
@@ -107,9 +111,17 @@ int main(int argc, char* argv[])
 
   /* Set the desired sensor configuration */
   rslt = bme680_set_sensor_settings(set_required_settings,&gas_sensor);
+  if (rslt != BME680_OK) {
+      err(EXIT_FAILURE, "Bme680 set sensor settings: %d", rslt);
+      return -1;
+  }
 
   /* Set the power mode */
   rslt = bme680_set_sensor_mode(&gas_sensor);
+  if (rslt != BME680_OK) {
+      err(EXIT_FAILURE, "Bme680 set sensor mode: %d", rslt);
+      return -1;
+  }
 
   /* Get the total measurement duration so as to sleep or wait till the
    * measurement is complete */
