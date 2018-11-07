@@ -35,7 +35,7 @@ int8_t user_i2c_init(uint8_t device_nr, uint8_t i2c_addr)
     }
   }
 
-  int status = ioctl(i2c_fd, I2C_SLAVE_FORCE, i2c_addr);
+  int status = ioctl(i2c_fd, I2C_SLAVE, i2c_addr);
 
   if (status < 0) {
     err(EXIT_FAILURE, "set i2c slave address: %d", status);
@@ -74,7 +74,7 @@ int8_t user_i2c_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data, uint16
 
     n = write(i2c_fd, rbuf, 1);
     if (n != 1) {
-      err(EXIT_FAILURE, "i2c write: %d", n);
+      err(EXIT_FAILURE, "i2c write addr: %d", n);
       return (uint8_t) -1;
     }
 
