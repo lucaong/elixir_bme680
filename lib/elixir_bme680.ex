@@ -35,6 +35,16 @@ defmodule Bme680 do
 
   @doc """
   Perform a measurement on the BME680 sensor and synchronously return it
+
+  Measurements are structs like:
+  ```
+  %Bme680.Measurement{
+    temperature: 21.74,
+    pressure: 1090.52,
+    humidity: 45.32,
+    gas_resistance: 10235
+  }
+  ```
   """
   @spec measure(GenServer.server()) :: %Measurement{ temperature: float, pressure: float, humidity: float, gas_resistance: integer | nil }
   def measure(pid) do
@@ -42,7 +52,8 @@ defmodule Bme680 do
   end
 
   @doc """
-  Perform a measurement on the BME680 sensor and asynchronously get the result as a message
+  Perform a measurement on the BME680 sensor and asynchronously send the result
+  as a message to the pid in `send_to`
   """
   @spec measure_async(GenServer.server(), pid) :: :ok
   def measure_async(pid, send_to) do
