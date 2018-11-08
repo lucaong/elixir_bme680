@@ -17,6 +17,10 @@ def deps do
 end
 ```
 
+The Linux I2C driver needs to be installed for this library to work (e.g.
+`libi2c-dev` on Debian).
+
+
 ## Usage
 
 ```elixir
@@ -38,6 +42,7 @@ measurement = Bme680.measure(pid)
 ```
 
 For more information, read the [API documentation](https://hexdocs.pm/elixir_bme680).
+
 
 ## Acknowledgements
 
