@@ -483,6 +483,8 @@ struct	bme680_tph_sett {
 	uint8_t os_pres;
 	/*! Filter coefficient */
 	uint8_t filter;
+	/*! Temperature offset in Celsius, subtracted from measurement */
+	uint8_t t_offset;
 };
 
 /*!

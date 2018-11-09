@@ -95,6 +95,7 @@ int main(int argc, char* argv[])
   gas_sensor.tph_sett.os_pres = BME680_OS_4X;
   gas_sensor.tph_sett.os_temp = BME680_OS_8X;
   gas_sensor.tph_sett.filter = BME680_FILTER_SIZE_3;
+  gas_sensor.tph_sett.t_offset = 4; /* temperature offset subtracted when measuring */
 
   /* Set the remaining gas sensor settings and link the heating profile */
   gas_sensor.gas_sett.run_gas = BME680_ENABLE_GAS_MEAS;
