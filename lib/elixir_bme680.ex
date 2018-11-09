@@ -19,14 +19,23 @@ defmodule Bme680 do
 
   @doc """
   Starts and links the `Bme680` GenServer.
+
+  Options:
+    - `i2c_device_number` is the number of the i2c device, e.g. 1 for `/dev/i2c-1`
+    - `i2c_address` i2c address of the sensor. It can be only `0x76` or `0x77`
+    - `temperature_offset` is an offset, in degrees Celsius, that will be
+      subtracted to temperature measurements in order to compensate for the internal
+      heating of the device. It's typically around 4 or 5 degrees, and also
+      affects relative humidity calculations
   """
-  @spec start_link([ i2c_device_number: integer, i2c_address: 0x76 | 0x77 ], [ term ]) :: GenServer.on_start()
+  @spec start_link([ i2c_device_number: integer, i2c_address: 0x76 | 0x77, temperature_offset: non_neg_integer ], [ term ]) :: GenServer.on_start()
   def start_link(bme_opts \\ [], opts \\ []) do
     i2c_device_number = Keyword.get(bme_opts, :i2c_device_number, 1)
     i2c_address = Keyword.get(bme_opts, :i2c_address, 0x76)
+    temperature_offset = Keyword.get(bme_opts, :temperature_offset, 0)
 
     if Enum.member?([0x76, 0x77], i2c_address) do
-      arg = [i2c_device_number, i2c_address]
+      arg = [i2c_device_number, i2c_address, temperature_offset]
       GenServer.start_link(__MODULE__, arg, opts)
     else
       { :error, "invalid i2c address #{i2c_address}. Valid values are 0x76 and 0x77" }
@@ -70,11 +79,11 @@ defmodule Bme680 do
 
   # GenServer callbacks
 
-  def init([i2c_device_number, i2c_address]) do
+  def init([i2c_device_number, i2c_address, temperature_offset]) do
     executable_dir = Application.get_env(:elixir_bme680, :executable_dir, :code.priv_dir(:elixir_bme680))
 
     port = Port.open({:spawn_executable, executable_dir ++ '/bme680'}, [
-      {:args, ["#{i2c_device_number}", "#{i2c_address}"]},
+      {:args, ["#{i2c_device_number}", "#{i2c_address}", "#{temperature_offset}"]},
       {:line, 64},
       :use_stdio,
       :binary,

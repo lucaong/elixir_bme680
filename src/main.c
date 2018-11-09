@@ -55,6 +55,7 @@ int main(int argc, char* argv[])
   struct bme680_dev gas_sensor;
   uint8_t i2c_device_n = 1;
   uint8_t i2c_addr = BME680_I2C_ADDR_PRIMARY;
+  uint8_t temperature_offset = 0;
 
   if (argc > 1) {
     i2c_device_n = (uint8_t) atoi(argv[1]);
@@ -66,6 +67,10 @@ int main(int argc, char* argv[])
       err(EXIT_FAILURE, "Invalid i2c address: %d", i2c_addr);
       return -1;
     }
+  }
+
+  if (argc > 3) {
+    temperature_offset = (uint8_t) atoi(argv[3]);
   }
 
   user_i2c_init(i2c_device_n, i2c_addr);
@@ -95,7 +100,7 @@ int main(int argc, char* argv[])
   gas_sensor.tph_sett.os_pres = BME680_OS_4X;
   gas_sensor.tph_sett.os_temp = BME680_OS_8X;
   gas_sensor.tph_sett.filter = BME680_FILTER_SIZE_3;
-  gas_sensor.tph_sett.t_offset = 4; /* temperature offset subtracted when measuring */
+  gas_sensor.tph_sett.t_offset = temperature_offset; /* temperature offset subtracted when measuring */
 
   /* Set the remaining gas sensor settings and link the heating profile */
   gas_sensor.gas_sett.run_gas = BME680_ENABLE_GAS_MEAS;
