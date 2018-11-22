@@ -47,4 +47,4 @@ For more information, read the [API documentation](https://hexdocs.pm/elixir_bme
 ## Acknowledgements
 
 This project contains low-level code from the [BME680 driver by
-Bosh](https://github.com/BoschSensortec/BME680_driver)
+Bosch](https://github.com/BoschSensortec/BME680_driver)
