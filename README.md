@@ -18,7 +18,8 @@ end
 ```
 
 The Linux I2C driver needs to be installed for this library to work (e.g.
-`libi2c-dev` on Debian).
+`libi2c-dev` on Debian). If using [Nerves](https://nerves-project.org), the
+driver should already be installed by default.
 
 
 ## Usage
@@ -42,6 +43,15 @@ measurement = Bme680.measure(pid)
 ```
 
 For more information, read the [API documentation](https://hexdocs.pm/elixir_bme680).
+
+### Note on gas resistance sensor warm up
+
+Note that, due to the nature of the sensor, the gas resistance measurement needs
+a warm-up in order to give stable measurements. One possible strategy is to
+perform continuous meaurements in a loop until the value stabilizes (e.g.
+changing by less than 1% between consecutive measurements). That might take from
+a few seconds to several minutes (or more when the sensor is brand new), so it's
+adviseable to perform the measurement asynchronously to avoid blocking.
 
 
 ## Acknowledgements
