@@ -1,6 +1,6 @@
 # Elixir Bme680
 
-[![Build Status](https://travis-ci.org/lucaong/elixir_bme680.svg?branch=master)](https://travis-ci.org/lucaong/elixir_bme680)
+[![Build Status](https://travis-ci.org/lucaong/elixir_bme680.svg?branch=master)](https://travis-ci.org/lucaong/elixir_bme680) [![Hex Version](https://img.shields.io/hexpm/v/elixir_bme680.svg)](https://hex.pm/packages/elixir_bme680) [![docs](https://img.shields.io/badge/docs-hexpm-blue.svg)](https://hexdocs.pm/elixir_bme680/)
 
 An Elixir library to interface with the BME680 environmental sensor.
 
