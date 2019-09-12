@@ -47,7 +47,7 @@ measurement = Bme680.measure(pid)
 For more information, read the [API documentation](https://hexdocs.pm/elixir_bme680).
 
 
-# Sensor compatibility
+## Sensor compatibility
 
 The default setting has been tested on the [Pimoroni
 BME680](https://shop.pimoroni.com/products/bme680-breakout). The [Adafruit
@@ -60,7 +60,7 @@ Bme680.start_link(i2c_address: 0x77)
 ```
 
 
-### Note on gas resistance sensor warm up
+## Note on gas resistance sensor warm up
 
 Note that, due to the nature of the sensor, the gas resistance measurement needs
 a warm-up in order to give stable measurements. One possible strategy is to
