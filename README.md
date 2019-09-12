@@ -28,10 +28,6 @@ driver should already be installed by default.
 
 ```elixir
 {:ok, pid} = Bme680.start_link()
-# This default setting has been tested on the [Pimoroni BME680](https://shop.pimoroni.com/products/bme680-breakout)
-# The [Adafruit BME680](https://www.adafruit.com/product/3660) requires using a different i2c address.
-# For the Adafruit, pass in the i2c_address option with value `0x77` as follows
-# Bme680.start_link(i2c_address: 0x77)
 
 measurement = Bme680.measure(pid)
 
@@ -50,14 +46,27 @@ measurement = Bme680.measure(pid)
 
 For more information, read the [API documentation](https://hexdocs.pm/elixir_bme680).
 
+
+# Sensor compatibility
+
+The default setting has been tested on the [Pimoroni
+BME680](https://shop.pimoroni.com/products/bme680-breakout). The [Adafruit
+BME680](https://www.adafruit.com/product/3660) requires using a different i2c
+address. For the Adafruit, pass in the `i2c_address` option with value `0x77` as
+follows:
+
+```elixir
+Bme680.start_link(i2c_address: 0x77)
+```
+
+
 ### Note on gas resistance sensor warm up
 
 Note that, due to the nature of the sensor, the gas resistance measurement needs
 a warm-up in order to give stable measurements. One possible strategy is to
-perform continuous meaurements in a loop until the value stabilizes (e.g.
-changing by less than 1% between consecutive measurements). That might take from
-a few seconds to several minutes (or more when the sensor is brand new), so it's
-adviseable to perform the measurement asynchronously to avoid blocking.
+perform continuous meaurements in a loop until the value stabilizes. That might
+take from a few seconds to several minutes (or more when the sensor is brand
+new).
 
 
 ## Acknowledgements
