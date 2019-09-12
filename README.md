@@ -28,6 +28,10 @@ driver should already be installed by default.
 
 ```elixir
 {:ok, pid} = Bme680.start_link()
+# This default setting has been tested on the [Pimoroni BME680](https://shop.pimoroni.com/products/bme680-breakout)
+# The [Adafruit BME680](https://www.adafruit.com/product/3660) requires using a different i2c address.
+# For the Adafruit, pass in the i2c_address option with value `0x77` as follows
+# Bme680.start_link(i2c_address: 0x77)
 
 measurement = Bme680.measure(pid)
 
