@@ -16,17 +16,23 @@ CC ?= $(CROSSCOMPILE)-gcc
 
 CFLAGS ?= -O2 -Wall -Wextra -Wno-unused-parameter
 
-HEADER_FILES = src
+HEADER_FILES = src src_bme280
 
 SRC = $(wildcard src/*.c)
+SRC280 = $(wildcard src_bme280/*.c )
 
 OBJ = $(SRC:.c=.o)
 
-DEFAULT_TARGETS ?= priv priv/bme680
+OBJ280 = $(SRC280:.c=.o)
+
+DEFAULT_TARGETS ?= priv priv/bme680 priv/bme280
 
 all: $(DEFAULT_TARGETS)
 
 priv/bme680: $(OBJ)
+	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
+
+priv/bme280: $(OBJ280)
 	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 %.o: %.c
@@ -38,3 +44,4 @@ priv:
 clean:
 	rm -rf priv
 	rm -f $(OBJ)
+	rm -f $(OBJ280)
