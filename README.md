@@ -24,7 +24,7 @@ The Linux I2C driver needs to be installed for this library to work (e.g.
 `libi2c-dev` on Debian). If using [Nerves](https://nerves-project.org), the
 driver should already be installed by default.
 
-## Usage Bme680
+## Usage with Bme680
 
 ```elixir
 {:ok, pid} = Bme680.start_link()
@@ -44,7 +44,7 @@ measurement = Bme680.measure(pid)
 # relative humidity, and gas_resistance in Ohm
 ```
 
-## Usage Bme280
+## Usage with Bme280
 
 ```elixir
 {:ok, pid} = Bme280.start_link()
@@ -79,15 +79,17 @@ Bme680.start_link(i2c_address: 0x77)
 
 ## Sensor compatibility BME280
 
-The default setting has been tested on the [HiLetgo BME280](https://www.amazon.com/gp/product/B01N47LZ4P/).
+The default setting has been tested on the [HiLetgo
+BME280](https://www.amazon.com/gp/product/B01N47LZ4P/).
 
-## Note on gas resistance sensor warm up
 
-Note that, due to the nature of the sensor, the gas resistance measurement needs
-a warm-up in order to give stable measurements. One possible strategy is to
-perform continuous meaurements in a loop until the value stabilizes. That might
-take from a few seconds to several minutes (or more when the sensor is brand
-new).
+## Note on gas resistance sensor warm up on the BME680
+
+Note that, due to the nature of the BME680 gas resistance sensor, the gas
+resistance measurement needs a warm-up in order to give stable measurements. One
+possible strategy is to perform continuous meaurements in a loop until the value
+stabilizes. That might take from a few seconds to several minutes (or more when
+the sensor is brand new).
 
 ## Acknowledgements
 
