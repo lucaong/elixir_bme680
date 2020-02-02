@@ -29,7 +29,7 @@ defmodule ElixirBme680.MixProject do
   defp package() do
     [
       description: "An Elixir library to interface with the BME680 gas sensor",
-      files: ["lib", "LICENSE", "mix.exs", "README.md", "src/*.c", "src/*.h", "src/linux/i2c-dev.h", "Makefile"],
+      files: ["lib", "LICENSE", "mix.exs", "README.md", "src/*.c", "src/*.h", "src/linux/i2c-dev.h", "src_bme280/*.c", "src_bme280/*.h", "src_bme280/linux/i2c-dev.h", "Makefile"],
       maintainers: ["Luca Ongaro"],
       licenses: ["Apache-2.0"],
       links: %{}
