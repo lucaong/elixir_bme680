@@ -25,4 +25,4 @@ elixir_bme680-*.tar
 /priv
 /src/*.o
 /src_bme280/*.o
-
+.elixir_ls/
