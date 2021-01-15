@@ -1,6 +1,8 @@
 defmodule ElixirBme680.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/lucaong/elixir_bme680"
+
   def project do
     [
       app: :elixir_bme680,
@@ -11,7 +13,7 @@ defmodule ElixirBme680.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      source_url: "https://github.com/lucaong/elixir_bme680",
+      source_url: @source_url,
       docs: [
         main: "Bme680",
         extras: ["README.md"]
@@ -32,7 +34,7 @@ defmodule ElixirBme680.MixProject do
       files: ["lib", "LICENSE", "mix.exs", "README.md", "src/*.c", "src/*.h", "src/linux/i2c-dev.h", "src_bme280/*.c", "src_bme280/*.h", "src_bme280/linux/i2c-dev.h", "Makefile"],
       maintainers: ["Luca Ongaro"],
       licenses: ["Apache-2.0"],
-      links: %{}
+      links: %{"GitHub" => @source_url}
     ]
   end
 
