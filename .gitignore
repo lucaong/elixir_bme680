@@ -22,7 +22,4 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 elixir_bme680-*.tar
 
-/priv
-/src/*.o
-/src_bme280/*.o
 .elixir_ls/

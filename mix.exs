@@ -9,7 +9,8 @@ defmodule ElixirBme680.MixProject do
       version: "0.2.1",
       elixir: "~> 1.7",
       compilers: [:elixir_make] ++ Mix.compilers,
-      aliases: aliases(),
+      make_targets: ["all"],
+      make_clean: ["clean"],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
@@ -36,10 +37,6 @@ defmodule ElixirBme680.MixProject do
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @source_url}
     ]
-  end
-
-  defp aliases do
-    [clean: ["clean", "clean.make"]]
   end
 
   # Run "mix help deps" to learn about dependencies.
