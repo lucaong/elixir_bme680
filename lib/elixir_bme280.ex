@@ -1,6 +1,6 @@
 defmodule Bme280 do
   @moduledoc """
-  `elixir_bme280` provides a high level abstraction to interface with the
+  Provides a high level abstraction to interface with the
   BME280 environmental sensor on Linux platforms.
   """
   use Bitwise
