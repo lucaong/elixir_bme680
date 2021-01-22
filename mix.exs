@@ -16,7 +16,7 @@ defmodule ElixirBme680.MixProject do
       package: package(),
       source_url: @source_url,
       docs: [
-        main: "Bme680",
+        main: "readme",
         extras: ["README.md"]
       ]
     ]
